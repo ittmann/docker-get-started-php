@@ -17,7 +17,7 @@ services:
     networks:
       - webnet
     links:
-      - php
+      - php-fpm
   php-fpm:
     image: ittmann/getstartedphp:php-fpm-part3b
     deploy:
