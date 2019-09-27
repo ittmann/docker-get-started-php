@@ -1,9 +1,9 @@
 # Docker Get Started, with PHP #
-[Docker Get Started Tutorial](https://docs.docker.com/get-started/part3/) using PHP instead of python
+[Docker Get Started Tutorial](https://docs.docker.com/get-started/part5/) using PHP instead of python
 
 ## build ##
-`docker build -f Dockerfile.nginx --tag ittmann/getstartedphp:nginx-part3b .`
-`docker build -f Dockerfile.php-fpm --tag ittmann/getstartedphp:php-fpm-part3b .`
+`docker build -f Dockerfile.nginx --tag ittmann/getstartedphp:nginx-part5 .`
+`docker build -f Dockerfile.php-fpm --tag ittmann/getstartedphp:php-fpm-part5 .`
 
 ## run ##
 `docker swarm init`
