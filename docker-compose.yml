@@ -1,7 +1,7 @@
 version: "3"
 services:
-  web:
-    image: getstartedphp-nginx:latest
+  nginx:
+    image: ittmann/getstartedphp:nginx-part3b
     deploy:
       replicas: 5
       resources:
@@ -19,7 +19,7 @@ services:
     links:
       - php
   php-fpm:
-    image: getstartedphp-php-fpm:latest
+    image: ittmann/getstartedphp:php-fpm-part3b
     deploy:
       replicas: 5
       resources:
