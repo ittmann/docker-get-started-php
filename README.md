@@ -3,10 +3,12 @@
 
 ## build ##
 `docker build -f Dockerfile.nginx --tag ittmann/getstartedphp:nginx-part5 .`
+
 `docker build -f Dockerfile.php-fpm --tag ittmann/getstartedphp:php-fpm-part5 .`
 
 ## run ##
 `docker swarm init`
+
 `docker stack deploy -c docker-compose.yml get-started-php`
 
 ## stop & cleanup ##
