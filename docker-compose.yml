@@ -1,7 +1,7 @@
 version: "3"
 services:
   nginx:
-    image: ittmann/getstartedphp:nginx-part3b
+    image: ittmann/getstartedphp:nginx-part5
     deploy:
       replicas: 5
       resources:
@@ -11,15 +11,15 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - php-fpm
     networks:
       - webnet
     links:
-      - php
+      - php-fpm
   php-fpm:
-    image: ittmann/getstartedphp:php-fpm-part3b
+    image: ittmann/getstartedphp:php-fpm-part5
     deploy:
       replicas: 5
       resources:
@@ -32,5 +32,28 @@ services:
       - webnet
     environment:
       NAME: World
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/home/docker/data:/data"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    command: redis-server --appendonly yes
+    networks:
+      - webnet
 networks:
   webnet:
