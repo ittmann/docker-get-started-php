@@ -2,21 +2,16 @@
 [Docker Get Started Tutorial](https://docs.docker.com/get-started/part3/) using PHP instead of python
 
 ## build ##
-`docker build --tag get-started-php .`
+`docker build -f Dockerfile.nginx --tag ittmann/getstartedphp:nginx-part3b .`
+`docker build -f Dockerfile.php-fpm --tag ittmann/getstartedphp:php-fpm-part3b .`
 
 ## run ##
-`docker run --publish 8080:80 --name get-started-php get-started-php`
+`docker swarm init`
+`docker stack deploy -c docker-compose.yml get-started-php`
 
-**or, with live editing**
+## stop & cleanup ##
+**remove stack**
+`docker stack rm get-started-php`
 
-`docker run --publish 8080:80 --name get-started-php --volume $(pwd):/var/www/app get-started-php`
-
-## stop ##
-`docker stop get-started-php`
-
-## cleanup ##
-**remove container**
-`docker container rm get-started-php`
-
-**remove image**
-`docker image remove get-started-php`
+**leave the swarm**
+`docker swarm leave --force`
