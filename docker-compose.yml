@@ -1,8 +1,7 @@
 version: "3"
 services:
   web:
-    # replace username/repo:tag with your name and image details
-    image: ittmann/getstartedphp:part2
+    image: getstartedphp-nginx:latest
     deploy:
       replicas: 5
       resources:
@@ -12,8 +11,26 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "4000:80"
+      - "8080:80"
+    depends_on:
+      - php-fpm
     networks:
       - webnet
+    links:
+      - php
+  php-fpm:
+    image: getstartedphp-php-fpm:latest
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    environment:
+      NAME: World
 networks:
   webnet:
