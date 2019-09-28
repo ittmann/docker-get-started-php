@@ -9,6 +9,8 @@
 ## run ##
 `docker swarm init`
 
+(make sure /home/docker/data exists on the swarm manager) `docker-machine ssh myvm1 "mkdir ./data"`
+
 `docker stack deploy -c docker-compose.yml get-started-php`
 
 ## stop & cleanup ##
